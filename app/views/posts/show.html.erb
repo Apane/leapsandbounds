@@ -1,0 +1,75 @@
+<%= render 'header' %>
+
+<div class="container">
+      <div class="posts">
+<p id="notice"><%= notice %></p>
+
+<p>
+ <h4><%= @post.title %></h4>
+  Written by: <%= link_to @post.author_name, 'mailto:anthony.panepinto101@gmail.com' %>
+   <%= time_ago_in_words(@post.created_at) + " ago" %><hr>
+
+</p>
+
+<p>
+  <%= simple_format(@post.body) %>
+</p>
+
+<p>
+       Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+</p>
+<br />
+<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-primary" if can? :update, @post %>
+<%= link_to 'Back', posts_path, class: "btn btn-primary" %>
+<br />
+<hr>
+<div id ="disqus_thread">
+<%= disqus_thread.html_safe %>
+</div>
+
+</div>
+
+<div class="sidebox">
+<% if notice.nil? %>
+
+<%else%> 
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<%end%>
+  <div class="avatar"><%= image_tag avatar_url('anthony.panepinto101@gmail.com') %></div>
+  <h2> <%= link_to 'Anthony', 'mailto:anthony.panepinto101@gmail.com' %></h2>
+  <h4>Toronto, ON, Canada</h4>
+<p>I’m a 22 year old entrepreneur. <br /> A Private Equity Analyst turned Programmer. Founder of <%= link_to 'LeapFM', 'http://www.leapfm.com' %> ('2013'). My hobbies are music-production, basketball, cooking, and movies.</p>
+
+<a href="https://twitter.com/maineONEder" class="social-button social-button-tw" target="_blank">Follow me on Twitter</a>
+<br /><br />
+<h4>Tags</h4>
+<div id="tag_cloud">
+  <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+
+</div>
+</div>
+</div>
+
+ <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'leapsnbounds'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+
+
+
+

@@ -1,0 +1,36 @@
+<%= render 'header' %>
+
+<div class="container">
+      <div class="posts">
+<p id="notice"><%= notice %></p>
+
+<p>
+ <h4><%= @post.title %></h4>
+</p>
+
+<p>
+  <%= simple_format(@post.body) %>
+</p>
+
+<p>
+  Written by: <%= link_to @post.author_name, 'mailto:anthony.panepinto101@gmail.com' %>
+   <%= time_ago_in_words(@post.created_at) + " ago" %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-primary" if can? :update, @post %>
+<%= link_to 'Back', posts_path, class: "btn btn-primary" %>
+</div>
+
+<div class="sidebox">
+  <div class="avatar"><%= image_tag('https://s3.amazonaws.com/clarityfm-production/users/pictures/7/profile_square/BIO%20-%20Headshot.jpg?1332179519') %></div>
+  <h2>Anthony </h2>
+  <h4>Toronto, ON, Canada</h4>
+<p>I’m a 22 year old entrepreneur. <br /> A PE Analyst turned Programmer. Founder of LeapFM ('2013'). <br />My hobbies are music-production, basketball, cooking, and movies.</p>
+</div>
+</div>
+
+<div class="container">
+      <div class="comments">
+     </div>
+</div>
+

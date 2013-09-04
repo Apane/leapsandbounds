@@ -1,0 +1,57 @@
+<% if user_signed_in? %>
+<div class="header">
+ <!-- Fixed navbar -->
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	    <div class="head"><%= link_to "Leaps and Bounds", root_path, class: "navbar-brand" %></div>
+        </div>
+        <div class="navbar-collapse collapse"> 
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+    </div> <!-- /container -->
+</div>
+
+<% else %>
+
+<div class="header">
+ <!-- Fixed navbar -->
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	    <div class="head"><%= link_to "Leaps and Bounds", root_path, class: "navbar-brand" %></div>
+        </div>
+        <div class="navbar-collapse collapse"> 
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Login", new_user_session_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+    </div> <!-- /container -->
+</div>
+<% end %>

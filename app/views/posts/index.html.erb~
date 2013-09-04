@@ -1,0 +1,29 @@
+<%= render 'header' %>
+
+<div class="container">
+  <% @posts.each do |post| %>
+    <div class="posts">
+      <div class="date"><h4><%= link_to post.created_at.strftime("%d %b. %Y"), post %></h4></div>
+        <h1><%= post.title %></h1>
+          <h6>Written by: <%= link_to post.author_name, 'mailto:j-randon@gmail.com' %></h6>
+            <br />
+          <%= link_to truncate(post.body, :length => 250, :omission => '... (continued)'), post %><br /><br />
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary" if can? :update, post %>
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" if can? :destroy, post %>
+    </div>
+  <% end %>
+
+<div class="sidebox">
+<% if notice.nil? %>
+
+<%else%> 
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<%end%>
+  <div class="avatar"><%= image_tag('https://s3.amazonaws.com/clarityfm-production/users/pictures/7/profile_square/BIO%20-%20Headshot.jpg?1332179519') %></div>
+  <h2>Anthony </h2>
+  <h4>Toronto, ON, Canada</h4>
+<p>I’m a 22 year old entrepreneur. <br /> A PE Analyst turned Programmer. Founder of LeapFM ('2013'). <br />My hobbies are music-production, basketball, cooking, and movies.</p>
+<%= link_to 'New Post', new_post_path, class: "btn btn-warning" if can? :create, @post  %>
+</div>
+  </div>  

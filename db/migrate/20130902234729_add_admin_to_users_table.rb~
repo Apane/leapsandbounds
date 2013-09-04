@@ -1,0 +1,6 @@
+class AddAdminToUsersTable < ActiveRecord::Migration
+  def change
+    add_column :users_tables, :admin,, :string
+    add_column :users_tables, :boolean, :string
+  end
+end
