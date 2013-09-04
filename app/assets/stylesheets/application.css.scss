@@ -9,10 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require social-share-button
  *= require_tree .
  */
 
 @import "twitter/bootstrap";
+@import "font-awesome";
 
 body { 
 background: image-url("background3.png") repeat scroll 0 0 #FFFFFF;
@@ -74,6 +76,7 @@ position: relative; left: 0; top: 0; width: 50%;
 margin-left: 9%;
 margin-bottom: 20px;
 }
+
 
 .avatar img {
 border-radius: 150px;

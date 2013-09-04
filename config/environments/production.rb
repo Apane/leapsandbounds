@@ -79,4 +79,6 @@ Readystartgo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
    config.action_mailer.default_url_options = { :host => 'http://obscure-anchorage-3710.herokuapp.com/' }
+
+   config.assets.precompile += %w( font-awesome-ie7.min.css )
 end

@@ -7,22 +7,27 @@
 <p>
  <h4><%= @post.title %></h4>
   Written by: <%= link_to @post.author_name, 'mailto:anthony.panepinto101@gmail.com' %>
-   <%= time_ago_in_words(@post.created_at) + " ago" %><hr>
+- <i class="icon-calendar"></i> -  <%= time_ago_in_words(@post.created_at) + " ago" %><hr>
 
 </p>
 
 <p>
   <%= simple_format(@post.body) %>
 </p>
-
 <p>
-       Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+  <i class="icon-tag"></i> Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
 </p>
-<br />
+<hr>
+<h5>Share this:</h5>
+<%= social_share_button_tag(@post.title) %>
+
+<br /><br />
 <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-primary" if can? :update, @post %>
 <%= link_to 'Back', posts_path, class: "btn btn-primary" %>
 <br />
 <hr>
+<h4><i class="icon-comment"></i> Leave a comment</h4>
+<br />
 <div id ="disqus_thread">
 <%= disqus_thread.html_safe %>
 </div>
@@ -43,7 +48,7 @@
 
 <a href="https://twitter.com/maineONEder" class="social-button social-button-tw" target="_blank">Follow me on Twitter</a>
 <br /><br />
-<h4>Tags</h4>
+<h4><i class="icon-tag"></i> Tags</h4>
 <div id="tag_cloud">
   <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
@@ -52,7 +57,6 @@
 </div>
 </div>
 </div>
-
  <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

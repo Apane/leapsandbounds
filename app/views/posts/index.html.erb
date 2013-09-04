@@ -3,15 +3,22 @@
 <div class="container">
   <% @posts.each do |post| %>
     <div class="posts">
-      <div class="date"><h4><%= link_to post.created_at.strftime("%d %b. %Y"), post %></h4></div>
+      <div class="date"><h4><i class="icon-calendar"></i> - <%= link_to post.created_at.strftime("%d %b. %Y"), post %></h4></div>
         <h1><%= post.title %></h1>
           <h6>Written by: <%= link_to post.author_name, 'mailto:anthony.panepinto101@gmail.com' %></h6>
    
           <%= link_to truncate(post.body, :length => 250, :omission => '... (continued)'), post %><br /><br />
-          Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+<i class="icon-tag"></i> Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+
 <br /><br />
+
+<br />
+<hr>
+<h5>Share this:</h5>
+<%= social_share_button_tag(post.title) %>
         <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary" if can? :update, post %>
       <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" if can? :destroy, post %>
+
     </div>
   <% end %>
 
@@ -29,7 +36,7 @@
 
 <a href="https://twitter.com/maineONEder" class="social-button social-button-tw" target="_blank">Follow me on Twitter</a>
 <br /><br />
-<h4>Tags</h4>
+<h4><i class="icon-tag"></i> Tags</h4>
 <div id="tag_cloud">
   <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
