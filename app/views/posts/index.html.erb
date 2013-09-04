@@ -8,9 +8,7 @@
           <h6>Written by: <%= link_to post.author_name, 'mailto:anthony.panepinto101@gmail.com' %></h6>
    
           <%= link_to truncate(post.body, :length => 250, :omission => '... (continued)'), post %><br /><br />
-<i class="icon-tag"></i> Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
-
-<br />
+	  <h4><i class="icon-tag"></i> Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></h4>
 <hr>
 <h5>Share this:</h5>
 <%= social_share_button_tag(post.title) %>
